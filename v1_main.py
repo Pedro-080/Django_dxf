@@ -24,14 +24,23 @@ def get_lwpolyline_vertices(file_path,path_write):
         print(f"LWPOLYLINE with {len(lwpolyline)} vertices:")
         # Imprime o número de vértices da polilinha leve
 
+        with open(path_write,'w') as file:
+            file.write("")  #Limpa o arquivo
+        
+
+
         for vertex,num in zip(lwpolyline.vertices(),range(len(lwpolyline))):
             x, y = vertex  # Desempacota a tupla do vértice em coordenadas X e Y
             # write_txt(path_write,num,x,y)
             
+            with open(path_write,"r") as file:
+                linhas = file.readlines()
+          
             with open(path_write,"w") as file:
+                for linha in linhas:
+                    file.write(linha)
                 file.write(f"{num+1},{x:.4f},{y:.4f}\n")
             
-            # print(f"num: {num+1} Vertex: X={x}, Y={y}")
         print("-" * 30)
 
 
@@ -45,6 +54,7 @@ def write_txt(path_file,num,x,y):
             
         file.write(f"{num+1},{x:.4f},{y:.4f}\n")
     ...
+    
 
 
 
