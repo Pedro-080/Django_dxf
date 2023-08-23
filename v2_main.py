@@ -1,4 +1,6 @@
 # flake8: noqa
+# Estudo sobre tratamento de DXF
+# VERSÃO - V2 
 import ezdxf
 
 class Vertice:
