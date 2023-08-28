@@ -1,19 +1,5 @@
-class Vertice:
-    def __init__(self,num,x,y):
-        self.num = num
-        self.coord_x = x
-        self.coord_y = y
-        
-    def __str__(self):
-        return f"{self.num},{self.coord_x:.4f},{self.coord_y:.4f}"
+from .Vertice import Vertice
 
-    def set_num(self,num):
-        self.num=num
-
-
-    def tupla(self):
-        return (round(self.coord_x,4),round(self.coord_y,4))
-    
 class Perfil:
     def __init__(self):
         self.vertices = []
@@ -92,6 +78,10 @@ class Perfil:
         while index < len(self.vertices) and vertice.coord_x > self.vertices[index].coord_x:
             index += 1
         self.vertices.insert(index, vertice)        
-        ...   
+        ...
         
-        
+    def find_point(self,coord_X):
+        for vertice in self.vertices:
+            if vertice.coord_x == coord_X:
+                return vertice.tupla()
+        return None
