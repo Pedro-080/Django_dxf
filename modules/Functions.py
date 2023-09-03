@@ -2,6 +2,7 @@
 import ezdxf
 from .Perfil import Perfil
 from .Estrutura import Estrutura
+from .Catenaria import Catenaria
 
 def get_lwpolyline_vertices(file_path,path_write): #Lê um arquivo dxf e salva os vértices em um txt
     doc = ezdxf.readfile(file_path)  # Abre o arquivo DXF
@@ -66,5 +67,14 @@ def create_pole(file_path,perfil, estacas):
     print("LWPOLYLINE inserida ou editada no arquivo:", file_path)
     ...
 
-def create_catenaria(p1, p2):
+def create_catenaria(file_path,vao,p,To):
+    
+    cat = Catenaria(vao,p,To)
+    x,fx = cat._calc()
+    vertices = list(zip(x,fx*10))
+    create_lwpolyline(file_path,vertices)
+    
+    # print(x)
+    # print(fx)
+    # print(list(zip(x,fx)))
     ...
