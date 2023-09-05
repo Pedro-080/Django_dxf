@@ -67,11 +67,21 @@ def create_pole(file_path,perfil, estacas):
     print("LWPOLYLINE inserida ou editada no arquivo:", file_path)
     ...
 
-def create_catenaria(file_path,vao,p,To):
+def create_catenaria(file_path,vertices,p,To):
     
-    cat = Catenaria(vao,p,To)
+    cat = Catenaria(vertices,p,To)
+    print(f"Ae:{cat.Ae}") 
+    
+    
+    cat.get_pontos()
+    print(f"x min:{cat.x_min}")
+    print(f"x max:{cat.x_max}")
+    print(f"y min:{cat.y_min}")
+    print(f"y max:{cat.y_max}") 
+    print(f"C1: {cat.C1:.4f}") 
+    # print(f"fo: {cat.fo:.4f}")
     x,fx = cat._calc()
-    vertices = list(zip(x,fx*10))
+    vertices = list(zip(x,fx))
     create_lwpolyline(file_path,vertices)
     
     # print(x)

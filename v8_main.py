@@ -6,11 +6,13 @@
 from modules.Functions import *
 
 if __name__ == "__main__":
-    catenaria_dxf = "data/perfil/catenaria.dxf"
+    catenaria_dxf = "data/perfil/catenaria_new.dxf" 
     
-    
-    To = 1551.0428 #kgf
+    # To = 1545 #kgf
+    To = 500 #kgf
     p= 0.7816  #kgf/m
     vao = 350 # vao em m
-
-    create_catenaria(catenaria_dxf,vao,p,To)
+    
+    deslocamento_y = 12
+    vertices = [(60,40),(350,10)]
+    create_catenaria(catenaria_dxf,vertices,p,To)
