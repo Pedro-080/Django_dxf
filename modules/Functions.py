@@ -70,21 +70,23 @@ def create_pole(file_path,perfil, estacas):
 def create_catenaria(file_path,vertices,p,To):
     
     cat = Catenaria(vertices,p,To)
-    print(f"Ae:{cat.Ae}") 
-    
-    
+    print(f"Ae: {cat.Ae:.4f}") 
+    print(f"vao: {cat.vao}")
+    # print(f"Ae_1:{cat.Ae_1}") 
+    # print(f"Ae_2:{cat.Ae_2}") 
     cat.get_pontos()
     print(f"x min:{cat.x_min}")
-    print(f"x max:{cat.x_max}")
-    print(f"y min:{cat.y_min}")
-    print(f"y max:{cat.y_max}") 
-    print(f"C1: {cat.C1:.4f}") 
+    # print(f"x max:{cat.x_max}")
+    # print(f"y min:{cat.y_min}")
+    # print(f"y max:{cat.y_max}") 
+    # print(f"C1: {cat.C1:.4f}") 
     # print(f"fo: {cat.fo:.4f}")
     x,fx = cat._calc()
-    vertices = list(zip(x,fx))
-    create_lwpolyline(file_path,vertices)
+    # vertices = list(zip(x,fx))
+    # create_lwpolyline(file_path,vertices)
     
     # print(x)
     # print(fx)
+    # print(f'min{min(fx)}')
     # print(list(zip(x,fx)))
     ...
