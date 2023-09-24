@@ -18,9 +18,9 @@ if __name__ == "__main__":
     estacas_txt = "data/perfil/estacas.txt"
     
     tam = 10                                                    #Altura util das estruturas
-    vao = [0,100, 100, 100, 100, 100]                           #Lista com o comprimento dos vaos 
-    
-    
+    # vao = [0,100, 100, 100, 100, 100, 54.12,123.45]                           #Lista com o comprimento dos vaos 
+    # vao =[40,87.32,78.16,39.16,45.65,65.53,81.17,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,90,90,74,74,75.36,80,76,76.43,84.67]
+    vao =  [0,40,87.32,78.16,39.16,45.65,65.53,81.17,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,95,90,90,74,74,75.36,80,76,76.43,73.5]
     
     estacas = [sum(vao[:i + 1]) for i in range(len(vao))]       #Converte a lista de vaos em estaqueamento 
                                                                 #progressivo
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     
     
     
-    # limpar_arquivo(lwpolyline_dxf)
+    limpar_arquivo(lwpolyline_dxf)
     
     create_lwpolyline(lwpolyline_dxf, perfil.poins_tuple())     #Cria um novo arquivo dxf com os novos pontos de perfil
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # deslocamento_y = 12
     # vertices = [(10,40),(450,0)]
     # limpar_arquivo(test_catenaria_dxf)
-    vertices = [(50,100),(450,40)]
+    vertices = [(0,1456.4416),(100,1433.6451)]
     create_catenaria(test_catenaria_dxf,vertices,p,To)
     
 

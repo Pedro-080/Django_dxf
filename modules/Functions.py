@@ -101,7 +101,12 @@ def create_vao(file_path, estruturas,T,p):
         
         vertices=vao.create_cat_nivel1(T, p)
         # print(vertices)
-        modelspace.add_lwpolyline(points=vertices)
+        
+        cater_color = 10
+        cater_color = 0.3
+        cater = modelspace.add_lwpolyline(points=vertices)
+        cater.dxf.color = 10
+        cater.dxf.const_width = 0.3 
         vaos.append(vao)
 
     doc.saveas(file_path)

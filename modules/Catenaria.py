@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 class Catenaria:
     def __init__(self,vertices,p,To):
         self.vertices = vertices
-        self.p1,self.p2 = vertices[0],vertices[1]
+        self.p1 = vertices[0]
+        self.p2 = vertices[1]
+        # self.p1,self.p2 = vertices[0],vertices[1]
         self.x_min = None
         self.x_max = None
         self.y_min = None 
@@ -55,8 +57,9 @@ class Catenaria:
         ...
         
     def _calc_catenaria(self,x): #Calculo da catenária com deslocamento
+        # fx = self.C1*(np.cosh(x/self.C1)-1)*self.Y_scale
         fx = self.C1*(np.cosh(x/self.C1)-1)*self.Y_scale
-
+        
         if self.p2[1]<=self.p1[1]:
             return fx-fx[0]+self.p1[1]
         else:
@@ -72,8 +75,8 @@ class Catenaria:
     def _calc_extremos(self):
         self.x_min = min(self.p1[0],self.p2[0])
         self.x_max = max(self.p1[0],self.p2[0])
-        self.y_min = min(self.p1[1],self.p2[1])
-        self.y_max = max(self.p1[1],self.p2[1])
+        self.y_min = min(self.p1[1],self.p2[1])/self.Y_scale
+        self.y_max = max(self.p1[1],self.p2[1])/self.Y_scale
         self.vao = abs(self.x_max-self.x_min)
         # self.Ae = self.vao+2*abs(self.y_max-self.y_min)*self.To/(self.vao*self.p)-self.x_min
         self.Ae = self.vao+2*self.C1*np.arcsinh(abs(self.y_max-self.y_min)/(2*self.C1)* 1/np.sinh(self.vao/(2*self.C1)))
