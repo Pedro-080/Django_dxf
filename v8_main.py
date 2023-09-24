@@ -15,5 +15,5 @@ if __name__ == "__main__":
 
     deslocamento_y = 12
     # vertices = [(10,40),(450,0)]
-    vertices = [(50,10),(450,40)]
+    vertices = [(50,100),(450,40)]
     create_catenaria(catenaria_dxf,vertices,p,To)

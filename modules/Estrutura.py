@@ -1,5 +1,5 @@
 class Estrutura:
-    def __init__(self,altura):
+    def __init__(self,tag,altura):
         self.altura = altura
         self.esforco = None
         
@@ -8,11 +8,12 @@ class Estrutura:
         
         self.coord_base = None
         self.coord_topo = None
+        self.Tag = tag
         ...
     
     def __str__(self):
         # return f"p base: {self.altura}/{self.esforco}"
-        return f"p base: {self.coord_base}\np topo:/{self.coord_topo}"
+        return f"Tag: {self.Tag} | p base: {self.coord_base} | p topo:/{self.coord_topo}"
     
     def __len__(self):
         pass

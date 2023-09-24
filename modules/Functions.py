@@ -3,6 +3,7 @@ import ezdxf
 from .Perfil import Perfil
 from .Estrutura import Estrutura
 from .Catenaria import Catenaria
+from .Vao import Vao   
 
 def get_lwpolyline_vertices(file_path,path_write): #Lê um arquivo dxf e salva os vértices em um txt
     doc = ezdxf.readfile(file_path)  # Abre o arquivo DXF
@@ -45,7 +46,7 @@ def create_lwpolyline(file_path, vertices, fechar=False): #Cria um arquivo dxf c
 
 def create_pole(file_path,perfil, estacas):
     tam = 10
-
+    estruturas = []
     try:
         doc = ezdxf.readfile(file_path)
         modelspace = doc.modelspace()
@@ -53,19 +54,87 @@ def create_pole(file_path,perfil, estacas):
         doc = ezdxf.new()
         modelspace = doc.modelspace()
 
+
+    counter = 1
     for vao in estacas:
 
-        estrutura = Estrutura(tam)
+        estrutura = Estrutura(counter,tam)
         
         estrutura.set_p_base(perfil.find_point(vao))
-
+        
+        # print(f"perfil.find_point(vao): {perfil.find_point(vao)}")
+        
         modelspace.add_lwpolyline([estrutura.coord_base,estrutura.coord_topo])
 
+        # print(f"estrutura.coord_topo: {estrutura.coord_topo}")
+        estruturas.append(estrutura)
+        # print(estruturas)
+        counter +=1
         ...
-
+    
+    # print(estruturas)
+    
     doc.saveas(file_path)
     print("LWPOLYLINE inserida ou editada no arquivo:", file_path)
+    
+    return estruturas
     ...
+
+def create_vao(file_path, estruturas,T,p):
+    try:
+        doc = ezdxf.readfile(file_path)
+        modelspace = doc.modelspace()
+    except IOError:
+        doc = ezdxf.new()
+        modelspace = doc.modelspace()     
+ 
+ 
+    vaos = []
+    
+    
+    
+    
+    for i in range(len(estruturas)-1):
+        # subset = [estruturas[i],estruturas[i+1]]
+        vao = Vao(estruturas[i],estruturas[i+1])    
+        # vao = create_vao(lwpolyline_dxf, estruturas[i],estruturas[i+1],To,p)
+        
+        vertices=vao.create_cat_nivel1(T, p)
+        # print(vertices)
+        modelspace.add_lwpolyline(points=vertices)
+        vaos.append(vao)
+
+    doc.saveas(file_path)
+    print("Catenarias inseridas no arquivo:", file_path)       
+
+
+    
+    # print(type(estrutura_final))
+   
+    
+    
+    
+
+    # print(vao.comprimento)
+    pass
+
+# def create_vao(file_path, estrutura_inicial,estrutura_final,T,p):
+#     # print(type(estrutura_final))
+#     vao = Vao(estrutura_inicial,estrutura_final)
+#     vao.create_cat_nivel1(T, p)
+    
+    
+    
+    
+    
+    
+    
+    
+#     print(vao.comprimento)
+#     pass
+
+
+
 
 def create_catenaria(file_path,vertices,p,To):
     
@@ -82,11 +151,41 @@ def create_catenaria(file_path,vertices,p,To):
     # print(f"C1: {cat.C1:.4f}") 
     # print(f"fo: {cat.fo:.4f}")
     x,fx = cat._calc()
-    # vertices = list(zip(x,fx))
+    vertices = list(zip(x,fx))
+    # print(f"vertices: {vertices}")
     # create_lwpolyline(file_path,vertices)
     
     # print(x)
     # print(fx)
     # print(f'min{min(fx)}')
     # print(list(zip(x,fx)))
+    
+    try:
+        doc = ezdxf.readfile(file_path)
+        modelspace = doc.modelspace()
+    except IOError:
+        doc = ezdxf.new()
+        modelspace = doc.modelspace()    
+
+    modelspace.add_lwpolyline(points=vertices, close=False)
+    doc.saveas(file_path)
+    print("LWPOLYLINE inserida ou editada no arquivo:", file_path)
+    
+    
     ...
+
+def limpar_arquivo(file_path):
+    
+    try:
+        doc = ezdxf.readfile(file_path)
+        msp = doc.modelspace()
+        msp.delete_all_entities()
+        doc.save()        
+        
+    except IOError:
+        print("O arquivo nao existe, nada para limpar")
+
+
+
+    
+    

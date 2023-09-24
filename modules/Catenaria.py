@@ -15,15 +15,15 @@ class Catenaria:
         self.p = p
         self.To = To
         self.C1 = self.To/self.p
-        
+        self.Y_scale = 10
         self._calc_extremos()       
                
         self.n_div = 100
         ...
 
     def _calc(self):        
-        print(f"p1: {self.p1[1]}") 
-        print(f"p2: {self.p2[1]}")    
+        # print(f"p1: {self.p1[1]}") 
+        # print(f"p2: {self.p2[1]}")    
         
         x = np.linspace(self.x_min,
                         self.x_max,
@@ -33,17 +33,17 @@ class Catenaria:
             
         
         if self.p2[1]<=self.p1[1]: # Ponto inicial mais alto que o final
-            print(f"x - p1 maior")
+            # print(f"x - p1 maior")
 
-            self.plotar(x,fx)
-            
+            # self.plotar(x,fx)
+            return x, fx
                      
         else:  # Ponto final mais alto que o inicial 
-            print(f"x - p2 maior")
+            # print(f"x - p2 maior")
             
             x_inv = list(reversed(x))
-            self.plotar(x_inv,fx)
-
+            # self.plotar(x_inv,fx)
+            return x_inv, fx
             
         # fx = self._calc_catenaria(x-self.Ae/2-self.x_max-self.Ae) 
         # fx = self._calc_catenaria(x) 
@@ -55,7 +55,7 @@ class Catenaria:
         ...
         
     def _calc_catenaria(self,x): #Calculo da catenária com deslocamento
-        fx = self.C1*(np.cosh(x/self.C1)-1)
+        fx = self.C1*(np.cosh(x/self.C1)-1)*self.Y_scale
 
         if self.p2[1]<=self.p1[1]:
             return fx-fx[0]+self.p1[1]
