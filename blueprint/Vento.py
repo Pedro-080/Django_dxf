@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+from .Estrutura import Estrutura
 
 class Vento(Estrutura):
     def __init__(self,Tmin,Teds,Tcoin,Alt,H_med,Vb):
