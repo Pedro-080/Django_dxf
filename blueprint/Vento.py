@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from .Estrutura import Estrutura
+from Estrutura import Estrutura
 
 class Vento(Estrutura):
     def __init__(self,Tmin,Teds,Tcoin,Alt,H_med,Vb):
@@ -61,7 +61,7 @@ class Vento(Estrutura):
         # h_normal=poste.h_util-0.2
         Cxtp = 2.2
         # Cxtp = 1.82
-        poste.seccionamento(5)
+        poste.seccionamento(3)
         Atp_a=list(map(lambda x:x*self.pressao_vento()[0]*Cxtp,poste.area_cg_a))
         Atp_b=list(map(lambda x:x*self.pressao_vento()[0]*Cxtp,poste.area_cg_b))
 

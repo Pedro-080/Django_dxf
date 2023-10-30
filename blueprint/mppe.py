@@ -19,7 +19,7 @@ plt.xticks([])
 plt.yticks([])
 
 plt.xlabel('Comprimento da rede', fontsize=14)
-plt.ylabel('Queda de tensão', fontsize=14)
+plt.ylabel('Perdas por efeito Joule', fontsize=14)
 
 plt.xlim(-10, 110) 
 plt.ylim(-0.5, 10)
@@ -32,8 +32,8 @@ plt.xticks([])
 plt.yticks([])
 
 plt.xlabel('Comprimento da rede', fontsize=14)
-plt.ylabel('Perdas por efeito Joule', fontsize=14)
 
+plt.ylabel('Queda de tensão', fontsize=14)
 plt.xlim(-10, 110)
 plt.ylim(-0.5, 2)
 
