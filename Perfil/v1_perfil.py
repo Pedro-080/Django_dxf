@@ -4,6 +4,9 @@
 # Empranchamento de perfil
 
 from Functions import  *
+from Find_edge import *
+import Functions_finds as Find
+# from Functions_finds import busca_texto
 
 
 if __name__ == "__main__":
@@ -23,11 +26,14 @@ if __name__ == "__main__":
     
     numero_layout = 3
     #===================FUNCIONANDO========================
-    # positions = busca_texto(perfil_original)
-    # grifar(perfil_original,perfil_copia,positions)
+
     
     doc = carregar(perfil_original)
     
+    Find.busca_texto(doc)
+    
+    
+    # grifar(doc,positions)    
     
     
     
@@ -43,7 +49,13 @@ if __name__ == "__main__":
     
     # doc = definir_area_viewport(doc)
     
+    
     inspecionar_bloco(doc,"Carimbo Babilonia")
+    
+    
+    
+    doc = add_viewport(doc,1,(100,100),(400,400))
+    
     # doc = circular(doc,(0,0))
     # definir_area_viewport(doc)
     # inserir_viewport(doc,numero_layout)
@@ -54,7 +66,7 @@ if __name__ == "__main__":
     
     
     
-    salvar(doc,perfil_copia)
+    # salvar(doc,perfil_copia)
     # print(lista_blocos)
     
 

@@ -1,26 +1,24 @@
-from Functions import  *
-import ezdxf
+from sklearn.cluster import KMeans
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Lista de pontos de exemplo
+pontos = [(1, 2), (1, 4), (1, 0), (4, 2), (4, 4), (4, 0)]
 
 
 
+print(pontos[-2])
 
-if __name__ == "__main__":
-    
-    doc = ezdxf.new()
-    msp = doc.modelspace()
-    closed_polyline = msp.add_lwpolyline([(0, 0), (0, 5), (5, 5), (5, 0)],close=True)
-    # msp.add_lwpolyline()
-    
-    
-    # Itera sobre as polilinhas no desenho
-    for entity in msp:
-        if entity.dxftype() == 'LWPOLYLINE':
-            if entity.closed:
-                # print(f"Polilinha fechada com pontos {entity.get_points()}")
-                for point in entity.get_points():
-                    print(f"Coordenadas x, y: {point[0]}, {point[1]}")
-            else:
-                print(f"Polilinha aberta com pontos {entity.get_points()}")
+# for ponto_anterior, proximo_ponto in zip(pontos, pontos[1:]):
+#     print(f"proximo_ponto: {proximo_ponto}")
+# # Converter a lista de pontos em uma matriz numpy
+# X = np.array(pontos)
 
+# # Agrupamento com K-means
+# kmeans = KMeans(n_clusters=2)
+# kmeans.fit(X)
 
-    ...
+# # Visualização dos clusters
+# plt.scatter(X[:,0],X[:,1], c=kmeans.labels_,cmap='rainbow')
+# plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], color='black')
+# plt.show()
